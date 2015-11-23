@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="ThemeHouse_PostAsUser" title="[⌂] Post As User" version_string="1.0.7a" version_id="1447261019" url="http://xf.themehouse.io/" install_callback_class="ThemeHouse_Install" install_callback_method="install" uninstall_callback_class="ThemeHouse_Install" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="controller_pre_dispatch" execute_order="10" callback_class="ThemeHouse_Listener_ControllerPreDispatch" callback_method="controllerPreDispatch" active="1" hint="" description=""/>
+    <listener event_id="file_health_check" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_FileHealthCheck" callback_method="fileHealthCheck" active="1" hint="" description=""/>
+    <listener event_id="init_dependencies" execute_order="10" callback_class="ThemeHouse_Listener_InitDependencies" callback_method="initDependencies" active="1" hint="" description=""/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassModel" active="0" hint="XenForo_Model_Ip" description="XenForo_Model_Ip (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassController" active="0" hint="XenForo_ControllerPublic_Forum" description="XenForo_ControllerPublic_Forum (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassController" active="0" hint="XenForo_ControllerPublic_Thread" description="XenForo_ControllerPublic_Thread (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassController" active="0" hint="XenForo_ControllerPublic_Member" description="XenForo_ControllerPublic_Member (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassDataWriter" active="0" hint="XenForo_DataWriter_Discussion_Thread" description="XenForo_DataWriter_Discussion_Thread (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassDataWriter" active="0" hint="XenForo_DataWriter_DiscussionMessage_Post" description="XenForo_DataWriter_DiscussionMessage_Post (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassModel" active="0" hint="XenForo_Model_User" description="XenForo_Model_User (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassController" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="load_class_datawriter" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassDataWriter" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="load_class_model" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_LoadClass" callback_method="loadClassModel" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="template_create" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_TemplateCreate" callback_method="templateCreate" active="1" hint="" description=""/>
+    <listener event_id="template_hook" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_TemplateHook" callback_method="templateHook" active="1" hint="" description=""/>
+    <listener event_id="template_post_render" execute_order="10" callback_class="ThemeHouse_PostAsUser_Listener_TemplatePostRender" callback_method="templatePostRender" active="1" hint="" description=""/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="th_postAsUser" display_order="2000" debug_only="0"/>
+    <option option_id="th_postAsUser_addToModeratorLog" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_postAsUser" display_order="210"/>
+    </option>
+    <option option_id="th_postAsUser_hideLink" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_postAsUser" display_order="500"/>
+    </option>
+    <option option_id="th_postAsUser_showOriginalAuthor" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_postAsUser" display_order="510"/>
+    </option>
+    <option option_id="th_postAsUser_updateLastActivity" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_postAsUser" display_order="200"/>
+    </option>
+    <option option_id="th_postAsUser_useComboBox" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_postAsUser" display_order="100"/>
+    </option>
+    <option option_id="th_postAsUser_userGroups" edit_format="callback" data_type="array" can_backup="1">
+      <default_value/>
+      <edit_format_params>ThemeHouse_PostAsUser_Option_UserGroups::renderOption</edit_format_params>
+      <sub_options>*</sub_options>
+      <relation group_id="th_postAsUser" display_order="1"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions>
+      <permission permission_group_id="general" permission_id="postAsDifferentUser" permission_type="flag" default_value="unset" interface_group_id="generalModeratorPermissions" display_order="1000"/>
+    </permissions>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="moderator_log_thread_post_as_user" version_id="1394125439" version_string="1.0.5"><![CDATA[Thread posted as user]]></phrase>
+    <phrase title="option_group_th_postAsUser" version_id="1372448681" version_string="1.0.4"><![CDATA[Post As User by ThemeHouse]]></phrase>
+    <phrase title="option_group_th_postAsUser_description" version_id="0" version_string="1.0.0"><![CDATA[Options for the Post As User by ThemeHouse add-on.]]></phrase>
+    <phrase title="option_th_postAsUser_addToModeratorLog" version_id="1394125439" version_string="1.0.5"><![CDATA[Add to moderator log]]></phrase>
+    <phrase title="option_th_postAsUser_addToModeratorLog_explain" version_id="1394125439" version_string="1.0.5"><![CDATA[If this option is selected, posts made by another user will be entered into the moderator log. Enabling this option will also make sure that all logged IP addresses of those who post as other users are excluded from the Spam Checker.]]></phrase>
+    <phrase title="option_th_postAsUser_hideLink" version_id="1398336927" version_string="1.0.6"><![CDATA[Hide User Link]]></phrase>
+    <phrase title="option_th_postAsUser_hideLink_explain" version_id="1398336927" version_string="1.0.6"><![CDATA[If ticked all messages posted using this add-on's features will have there links removed.]]></phrase>
+    <phrase title="option_th_postAsUser_showOriginalAuthor" version_id="1398336927" version_string="1.0.6"><![CDATA[Show Original Author]]></phrase>
+    <phrase title="option_th_postAsUser_showOriginalAuthor_explain" version_id="1398336927" version_string="1.0.6"><![CDATA[If ticked the original author link will be added to the message information.]]></phrase>
+    <phrase title="option_th_postAsUser_updateLastActivity" version_id="1372448681" version_string="1.0.4"><![CDATA[Update last activity date]]></phrase>
+    <phrase title="option_th_postAsUser_updateLastActivity_explain" version_id="1375915090" version_string="1.0.4"><![CDATA[Selecting this option will make the last activity date of a user change automatically when another user posts as that user.]]></phrase>
+    <phrase title="option_th_postAsUser_useComboBox" version_id="1350832310" version_string="1.0.1"><![CDATA[Replace drop-down menu with AutoComplete text input]]></phrase>
+    <phrase title="option_th_postAsUser_useComboBox_explain" version_id="1350832310" version_string="1.0.1"><![CDATA[This replaces the standard drop-down menu with an AutoComplete text input that allows a user to type the name of the user they wish to post, with suggested usernames being displayed as you type. This is useful where the list of members is quite large.<br/><br/>
+If <a href="http://xenforo.com/community/resources/autocomplete-combo-box-by-th.1152/">AutoComplete Combo Box by ThemeHouse</a> is installed, an AutoComplete Combo Box will automatically be displayed instead with no template edit required.]]></phrase>
+    <phrase title="option_th_postAsUser_userGroups" version_id="0" version_string="1.0.0"><![CDATA[Allowed user groups]]></phrase>
+    <phrase title="option_th_postAsUser_userGroups_explain" version_id="0" version_string="1.0.0"><![CDATA[Members with the 'Post as different user' permission will be able to post as users of the selected user groups.]]></phrase>
+    <phrase title="permission_general_postAsDifferentUser" version_id="0" version_string="1.0.0"><![CDATA[Post as different user]]></phrase>
+    <phrase title="th_post_as_user_explain_postasuser" version_id="1350607480" version_string="1.0.0"><![CDATA[Select a user from the list to post as that user, or leave blank to post as yourself.]]></phrase>
+    <phrase title="th_post_as_user_postasuser" version_id="1350607480" version_string="1.0.0"><![CDATA[Post As User]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="th_post_as_user_field_postasuser" version_id="1375915175" version_string="1.0.4"><![CDATA[<xen:require css="th_post_as_user_field_postasuser.css" />
+<xen:if is="{$postAsUsers} || {$xenOptions.th_postAsUser_useComboBox}">
+<dl class="ctrlUnit postAsUser">
+	<dt>
+		<label for="ctrl_post_as_user_id">{xen:phrase th_post_as_user_postasuser}:</label>
+	</dt>
+	<dd>
+		<xen:if is="{$xenOptions.th_postAsUser_useComboBox}">
+			<xen:if is="{$useAutoCombo}">
+				<xen:require css="th_autocombo.css" />
+				<xen:require js="js/themehouse/autocombo/autocombo.js" />
+				<input type="text" name="post_as_username" id="ctrl_post_as_username" class="textCtrl AutoCombo AcSingle"
+					data-acUrl="{xen:link members/find-post-as-user-auto-combo}" />
+			<xen:else />
+				<input type="text" name="post_as_username" id="ctrl_post_as_username" class="textCtrl AutoComplete AcSingle"
+					data-acUrl="{xen:link members/find-post-as-user}" />
+			</xen:if>
+		<xen:else />
+			<select name="post_as_user_id" id="ctrl_post_as_user_id" class="textCtrl"> <option value="">{$user.username}</option> <xen:foreach loop="$postAsUsers" key="$postAsUserId" value="$postAsUser"> <option value="{$postAsUserId}">{$postAsUser.username}</option> </xen:foreach> </select>
+		</xen:if>
+		<p class="explain">{xen:phrase th_post_as_user_explain_postasuser}</p>
+	</dd>
+</dl>
+</xen:if>]]></template>
+    <template title="th_post_as_user_field_postasuser.css" version_id="1375915175" version_string="1.0.4"><![CDATA[.postAsUser {
+	clear: both;
+}
+
+#QuickReply .submitUnit .postAsUser .explain {
+	line-height: normal;
+}
+
+]]></template>
+    <template title="th_quick_reply_prepend_postasuser" version_id="1350834940" version_string="1.0.2"><![CDATA[			<input type="submit" class="button primary" value="{xen:phrase post_reply}" accesskey="s" />
+			<xen:include template="attachment_upload_button" />
+			<xen:if is="{$showMoreOptions}"><input type="submit" class="button DisableOnSubmit" value="{xen:phrase more_options}..." name="more_options" /></xen:if>
+		</div>]]></template>
+  </templates>
+  <public_template_modifications>
+    <modification template="footer" modification_key="th_copyrightNotice_PostAsUser" description="Copyright notice for Post As User by ThemeHouse" execution_order="1" enabled="1" action="callback">
+      <find><![CDATA[/{xen:phrase xenforo_copyright}/]]></find>
+      <replace><![CDATA[ThemeHouse_Listener_InitDependencies::copyrightNotice]]></replace>
+    </modification>
+    <modification template="footer" modification_key="th_copyrightNotice_postAsUser" description="Copyright notice for [⌂] Post As User" execution_order="1" enabled="1" action="callback">
+      <find><![CDATA[/{xen:phrase (?:xenforo|extra)_copyright}/]]></find>
+      <replace><![CDATA[ThemeHouse_Listener_InitDependencies::copyrightNotice]]></replace>
+    </modification>
+    <modification template="message_user_info" modification_key="th_messageUserInfo_postasuser" description="Removes link from post user" execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#(<xen:username user="\$user" itemprop="name" rich="true" />)#Us]]></find>
+      <replace><![CDATA[<xen:if is="{$xenOptions.th_postAsUser_hideLink}">
+<div class="username">{$user.username}</div>
+<xen:else />
+${0}
+</xen:if>]]></replace>
+    </modification>
+    <modification template="post" modification_key="th_post_postasuser" description="Alters post as user link if required" execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#(<xen:username user="\$post" class="author" />)#Us]]></find>
+      <replace><![CDATA[<xen:if is="{$xenOptions.th_postAsUser_showOriginalAuthor}"><xen:username user="$post.original_poster_array" class="author" /><xen:elseif is="{$xenOptions.th_postAsUser_hideLink}" />{$post.username}<xen:else />${0}</xen:if>]]></replace>
+    </modification>
+    <modification template="thread_view" modification_key="th_threadView_postasuser" description="Removes link from page description if required" execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#({xen:helper username, \$thread})#Us]]></find>
+      <replace><![CDATA[{xen:if $xenOptions.th_postAsUser_hideLink,
+'{$thread.username}', 
+'{xen:helper username, $thread}'}]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
